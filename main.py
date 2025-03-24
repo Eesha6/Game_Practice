@@ -10,6 +10,7 @@ def add_project_root():
         if "main.py" in os.listdir(current_dir):
             sys.path.append(current_dir)
             break 
+        current_dir = os.path.dirname(current_dir)
 def main():
     game_key = GameKeyMaker(IntroDungeon, Player)
     game_key.turn()
