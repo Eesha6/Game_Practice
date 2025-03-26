@@ -64,7 +64,7 @@ class IntroDungeon:
                         slow_print("You grabbed the seeds")
                         pause(1)
                         self.room_items.remove("(s)eeds")
-                        game_key.game_add_to_backpack("(s)eeds")
+                        game_key.player.game_add_to_backpack("(s)eeds")
                     else:
                         slow_print("The seeds are no longer here.")
 
@@ -73,7 +73,7 @@ class IntroDungeon:
                         slow_print("You grabbed the pail of water")
                         pause(1)
                         self.room_items.remove("pail of (w)ater")
-                        game_key.game_add_to_backpack("pail of (w)ater")
+                        game_key.player.game_add_to_backpack("pail of (w)ater")
                     else:
                         slow_print("The pail of water is no longer here.")
                 elif item == "d":
@@ -81,7 +81,7 @@ class IntroDungeon:
                         slow_print("You grabbed the dirt...")
                         pause(1)
                         self.room_items.remove("(d)irt")
-                        game_key.game_add_to_backpack("(d)irt")
+                        game_key.player.game_add_to_backpack("(d)irt")
                     else:
                         slow_print("The dirt is no longer here.")
 
