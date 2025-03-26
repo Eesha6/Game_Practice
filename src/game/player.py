@@ -7,15 +7,18 @@ class Player:
 
     def add_to_backpack(self, item):
         self.backpack.append(item)
-        slow_print("You have following items:")
+        slow_print(f"You have following items: {self.backpack}")
+        slow_print(f"Added {item} to your backpack.")
         
         for item in self.backpack:
             print(item)
 
 
     def remove_from_backpack(self, item):
-        self.backpack.remove(item)
-        slow_print("You have following items:")
-        for item in self.backpack:
-            print(item)
-    
+        if item in self.backpack:
+            self.backpack.remove(item)
+            slow_print("You have following items:")
+            for item in self.backpack:
+                print(item)
+        else:
+            slow_print(f"{item} not in your backpack.")
