@@ -60,28 +60,34 @@ class IntroDungeon:
                 slow_print("What would you like to grab?")
                 item = input()
                 if item == "s":
-                    slow_print("You grabbed the seeds")
-                    pause(1)
-                    self.room_items.remove("(s)eeds")
-                    game_key.game_add_to_backpack("(s)eeds")
-                else:
-                    slow_print("The seeds are no longer here.")
+                    if "(s)eeds" in self.room_items: 
+                        slow_print("You grabbed the seeds")
+                        pause(1)
+                        self.room_items.remove("(s)eeds")
+                        game_key.game_add_to_backpack("(s)eeds")
+                    else:
+                        slow_print("The seeds are no longer here.")
 
-            elif item == "w":
-                slow_print("You grabbed the pail of water")
-                pause(1)
-                self.room_items.remove("pail of (w)ater")
-                game_key.game_add_to_backpack("pail of (w)ater")
+                elif item == "w":
+                    if "pail of (w)ater" in self.room_items:
+                        slow_print("You grabbed the pail of water")
+                        pause(1)
+                        self.room_items.remove("pail of (w)ater")
+                        game_key.game_add_to_backpack("pail of (w)ater")
+                    else:
+                        slow_print("The pail of water is no longer here.")
+                elif item == "d":
+                    if "(d)irt" in self.room_items:
+                        slow_print("You grabbed the dirt...")
+                        pause(1)
+                        self.room_items.remove("(d)irt")
+                        game_key.game_add_to_backpack("(d)irt")
+                    else:
+                        slow_print("The dirt is no longer here.")
 
-            elif item == "d":
-                slow_print("You grabbed the dirt...")
-                pause(1)
-                self.room_items.remove("(d)irt")
-                game_key.game_add_to_backpack("(d)irt")
-
+                    
+            
                 
-           
-               
 
             elif action == '3':
                 combining_1 = ""

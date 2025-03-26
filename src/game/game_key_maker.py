@@ -24,7 +24,9 @@ class GameKeyMaker:
         self.current_screen.enter(self)
 
     def game_add_to_backpack(self, item):
-        self.player.add_to_backpack(item)
+        #self.player.add_to_backpack(item)
+        backpack.append(item)  # Ensure this is adding items correctly
+        slow_print(f"Added {item} to your backpack.")
 
     def game_take_from_backpack(self, item):
         self.player.remove_from_backpack(item)

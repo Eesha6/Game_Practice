@@ -1,3 +1,4 @@
+from utils import slow_print
 
 class Player:
     def __init__(self):
