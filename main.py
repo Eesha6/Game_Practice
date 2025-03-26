@@ -17,14 +17,16 @@ def add_project_root():
             sys.path.append(current_dir)
             break 
         current_dir = os.path.dirname(current_dir)
+add_project_root()
+
 def main():
-    game_key = GameKeyMaker(IntroDungeon, Player)
+    intro_dungeon = IntroDungeon()
+    player = Player()
+    game_key = GameKeyMaker(intro_dungeon, player)
     game_key.turn()
     
 
 
 
-
-
 if __name__ == "__main__":
-    main()
+    main()  
