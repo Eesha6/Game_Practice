@@ -26,6 +26,7 @@ class GameKeyMaker:
     def game_add_to_backpack(self, item):
         #self.player.add_to_backpack(item)
         backpack.append(item)  # Ensure this is adding items correctly
+        print(f"Current Backpack: {backpack}")  # Print the current contents of the backpack
         slow_print(f"Added {item} to your backpack.")
 
     def game_take_from_backpack(self, item):

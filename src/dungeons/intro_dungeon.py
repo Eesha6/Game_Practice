@@ -105,7 +105,6 @@ class IntroDungeon:
                 combined_list.sort()
                 combined_string = "+".join(combined_list)
                 
-                combined_string = "+".join(combined_list)
                 if combined_string in self.combinator_dict:
                     slow_print(f"You have created {self.combinator_dict[combined_string]}")
                     backpack.append(self.combinator_dict[combined_string])
