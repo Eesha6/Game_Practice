@@ -1,8 +1,8 @@
 
 from game.player import Player
-from game.screens import CellHallway
+from dungeons.cell_hallway import CellHallway
 
-
+"""
 class GameKeyMaker():
     def __init__(self, intro_dungeon, player):
         self.player = player() 
@@ -11,9 +11,9 @@ class GameKeyMaker():
             "cell block 3": CellHallway()
         }
        
-
-    def turn(self):
-        self.dungeon_dict["intro"].enter(self) #pulls up dungeon screen
+"""
+def turn(self):
+    self.dungeon_dict["intro"].enter(self) #pulls up dungeon screen
 
 
 
