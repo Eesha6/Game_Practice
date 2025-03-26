@@ -7,11 +7,11 @@ combining_list = []
 
 class IntroDungeon:
     def __init__(self):
-        self.room_items = ["(r)ing", "(d)irt" , "bowl of (w)ater"]
+        self.room_items = ["(s)eeds", "(d)irt" , "pail of (w)ater"]
         self.combinator_dict = {
             "(d)irt+(w)ater": "mud",
-            "(d)irt+(r)ing": "dirty ring",
-            "(r)ing+(w)ater": "shiny ring"
+            "(d)irt+(s)eeds": "sprout",
+            "(s)eeds+(w)ater": "watery seeds"
 
         }
 
@@ -48,10 +48,10 @@ class IntroDungeon:
             action = input(action_menu)
 
             if action == '1':
-                intro_3 = "In a corner of your cell, you see a (r)ing- like a wedding ring."
+                intro_3 = "Near a tree, you see some (s)eeds- like some apple seeds."
                 slow_print(intro_3)
                 pause(2.5)
-                slow_print("You see a bowl of gross (water); also, there is (d)irt everywhere...")
+                slow_print("You see a pail of (w)ater; also, there is (d)irt everywhere...")
                 pause(3.5)
                 clear()
                 continue
@@ -59,23 +59,25 @@ class IntroDungeon:
             elif action == '2':
                 slow_print("What would you like to grab?")
                 item = input()
-                if item == "r":
-                    slow_print("You grabbed the ring")
+                if item == "s":
+                    slow_print("You grabbed the seeds")
                     pause(1)
-                    self.room_items.remove("(r)ing")
-                    game_key.game_add_to_backpack("(r)ing")
+                    self.room_items.remove("(s)eeds")
+                    game_key.game_add_to_backpack("(s)eeds")
+                else:
+                    slow_print("The seeds are no longer here.")
 
-                elif item == "w":
-                    slow_print("You grabbed the bowl of water")
-                    pause(1)
-                    self.room_items.remove("(w)ater")
-                    game_key.game_add_to_backpack("(w)ater")
+            elif item == "w":
+                slow_print("You grabbed the pail of water")
+                pause(1)
+                self.room_items.remove("pail of (w)ater")
+                game_key.game_add_to_backpack("pail of (w)ater")
 
-                elif item == "d":
-                    slow_print("You grabbed the dirt...")
-                    pause(1)
-                    self.room_items.remove("(d)irt")
-                    game_key.game_add_to_backpack("(d)irt")
+            elif item == "d":
+                slow_print("You grabbed the dirt...")
+                pause(1)
+                self.room_items.remove("(d)irt")
+                game_key.game_add_to_backpack("(d)irt")
 
                 
            
@@ -90,17 +92,20 @@ class IntroDungeon:
                 print(backpack)
                 slow_print("What would you like to combine first?")
                 combining_1 = input()
-                slow_print("What would you like to combine with {combining_1}?")
+                slow_print(f"What would you like to combine with {combining_1}?")  # Corrected f-string formatting
                 combining_2 = input()
                 combined_list.append(combining_1)
                 combined_list.append(combining_2)
                 combined_list.sort()
                 combined_string = "+".join(combined_list)
-                self.combinator_dict[combined_string]
-                slow_print(f"You have created {self.combinator_dict[combined_string]}")
-                pause(1)
-                backpack.append(self.combinator_dict[combined_string])
-                slow_print(f"The {self.combinator_dict[combined_string]} has been placed in your backpack")
+                
+                combined_string = "+".join(combined_list)
+                if combined_string in self.combinator_dict:
+                    slow_print(f"You have created {self.combinator_dict[combined_string]}")
+                    backpack.append(self.combinator_dict[combined_string])
+                    slow_print(f"The {self.combinator_dict[combined_string]} has been placed in your backpack")
+                else:
+                    slow_print("You can't combine these items.")
 
             elif action == '4':
                 slow_print("What would you like to use?")
