@@ -22,3 +22,12 @@ class Player:
                 print(item)
         else:
             slow_print(f"{item} not in your backpack.")
+            
+    def print_backpack(self):
+        """Prints all items in the backpack."""
+        if self.backpack:
+            slow_print("Your backpack contains:")
+            for item in self.backpack:
+                slow_print(item)
+        else:
+            slow_print("Your backpack is empty.")
