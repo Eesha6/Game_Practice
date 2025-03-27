@@ -16,23 +16,8 @@ class IntroDungeon:
         }
 
 
-
-   # def __init__(self, player):
-     #   self.player = player
-
-
-   #def enter(self, game_key):
-        #print("You awaken...")  
-        #print("You realize you're in a dungeon")
-        #rint("It smells like dung.")
-
-
-
-
-
-
-
     def enter(self, game_key):
+        print(f"Player: {game_key.player}")  # Debugging line to check if the player object is correctly passed
         intro_1 = "You awaken on a riverbank... "
         intro_2 = "You have no idea how you got here."
         clear()
@@ -58,7 +43,7 @@ class IntroDungeon:
         
             elif action == '2':
                 slow_print("What would you like to grab?")
-                item = input()
+                item = input().strip().lower()
                 if item == "s":
                     if "(s)eeds" in self.room_items: 
                         slow_print("You grabbed the seeds")
@@ -73,7 +58,6 @@ class IntroDungeon:
                         slow_print("You grabbed the pail of water")
                         pause(1)
                         self.room_items.remove("pail of (w)ater")
-                        print(game_key.player)  # Debugging
                         game_key.player.add_to_backpack("pail of (w)ater")
                     else:
                         slow_print("The pail of water is no longer here.")
@@ -91,41 +75,63 @@ class IntroDungeon:
                 
 
             elif action == '3':
-                combining_1 = ""
-                combining_2 = ""
-                combined_list = []
+                if len(game_key.player.backpack) < 2:
+                    slow_print("You don't have enough items to combine.")
+                    continue
 
-                slow_print("You have the following items: ")
-                print(game_key.player.backpack)
+                #combining_1 = ""
+                #combining_2 = ""
+               
+                combined_list = []
+                game_key.player.print_backpack()
+                pause(1)
                 slow_print("What would you like to combine first?")
-                combining_1 = input()
+                combining_1 = input().strip().lower()
+                if combining_1 in game_key.player.backpack:
+                    combined_list.append(combining_1)
+                else:
+                    slow_print("You don't have that item!")
+                    continue
+                    
+    
                 slow_print(f"What would you like to combine with {combining_1}?")  # Corrected f-string formatting
-                combining_2 = input()
-                combined_list.append(combining_1)
-                combined_list.append(combining_2)
+                combining_2 = input().strip().lower()
+                if combining_2 in game_key.player.backpack:
+                    combined_list.append(combining_2)
+                else:
+                    slow_print("You don't have that item!")
+                    continue
+                      
+            
                 combined_list.sort()
                 combined_string = "+".join(combined_list)
-                
+                print(f"Trying to combine: {combined_string}")
+                print(f"Available combinations: {list(self.combinator_dict.keys())}")
+
                 if combined_string in self.combinator_dict:
-                    slow_print(f"You have created {self.combinator_dict[combined_string]}")
-                    backpack.append(self.combinator_dict[combined_string])
-                    slow_print(f"The {self.combinator_dict[combined_string]} has been placed in your backpack")
+                    new_item = self.combinator_dict[combined_string]
+                    slow_print(f"You have created {new_item}!")
+                 
+                    game_key.player.backpack.remove(combining_1)
+                    game_key.player.backpack.remove(combining_2)
+                    game_key.player.add_to_backpack(new_item)
+                    slow_print(f"The {new_item} has been placed in your backpack")
                 else:
                     slow_print("You can't combine these items.")
 
             elif action == '4':
                 slow_print("What would you like to use?")
-                for item in backpack:
+                for item in game_key.player.backpack:
                     slow_print(item)
-                item = input()
+                item = input().strip()
                 if item == "(w)ater" and "(w)ater" in backpack:
                     slow_print("The water is gross- you drink as much as you can stand...")
                     pause(2.5)
-                elif item == "(d)irt" and "water" in backpack:
+                elif item == "(d)irt" and "(d)irt" in backpack:
                     slow_print("You grab the dirt and pour it into your hair- have you gone crazy?")
                     pause(2.5)
-                elif item == "(r)ing" and "ring" in backpack:
-                    slow_print("You toss the ring out of the cell... that could have been useful")
+                elif item == "(s)eeds" and "(s)eeds" in backpack:
+                    slow_print("You toss the seeds into the river, they could have been useful...")
                     pause(2.5)
                 elif item == "(s)hiny ring":
                     slow_print("A guard comes to check on you...")

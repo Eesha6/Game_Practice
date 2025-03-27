@@ -10,7 +10,7 @@ from dungeons.cell_hallway import CellHallway
 
 class GameKeyMaker:
     def __init__(self, intro_dungeon, player):
-        self.player = player
+        self.player = player()
         self.dungeon_dict = {
             "intro": intro_dungeon, # intro dungeon gets loaded
             "cell block 3": CellHallway()

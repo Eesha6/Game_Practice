@@ -24,7 +24,7 @@ add_project_root()
 def main():
     intro_dungeon = IntroDungeon()
     player = Player()
-    game_key = GameKeyMaker(intro_dungeon, player)
+    game_key = GameKeyMaker(intro_dungeon=IntroDungeon(), player=Player)
     game_key.turn()
     
 
