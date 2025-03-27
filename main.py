@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
 from src.game.game_key_maker import GameKeyMaker
 from src.dungeons.intro_dungeon import IntroDungeon
-from src.dungeons.tree_hollow import TreeHollow
+#from src.dungeons.tree_hollow import TreeHollow
 from src.game.player import Player
 
 
@@ -23,9 +23,11 @@ def add_project_root():
 add_project_root()
 
 def main():
+    '''
     intro_dungeon = IntroDungeon()
-    player = Player()
-    game_key = GameKeyMaker(intro_dungeon=IntroDungeon(), player=Player())
+    player = Player()'
+    '''
+    game_key = GameKeyMaker(IntroDungeon, Player)
     game_key.turn()
     
 

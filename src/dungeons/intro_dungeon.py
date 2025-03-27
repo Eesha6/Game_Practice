@@ -1,6 +1,8 @@
 
 from utils import *
 
+from game.player import Player
+
 backpack = []
 action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n"
 combining_list = []
@@ -8,7 +10,8 @@ combining_list = []
 
 
 class IntroDungeon:
-    def __init__(self):
+    def __init__(self, player):
+        self.player = Player
         self.room_items = ["(s)eeds", "(w)ater","(d)irt"]
         self.combinator_dict = {
             frozenset(["(d)irt", "(w)ater"]): "mud",
@@ -44,18 +47,18 @@ class IntroDungeon:
             elif action == '2':
                 slow_print("What would you like to grab? (s/w/d)")
                 item = input().lower()
-                name_map = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
-                name = name_map.get(item)
-                if name and name in self.room_items:
+                name_map_dict = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
+                name = name_map_dict[item]
+                if name in self.room_items:
                     self.room_items.remove(name)
-                    game_key.player.add_to_backpack(name)
+                    game_key.game_add_to_backpack(name)
                 else:
                     slow_print("That item isn't here.")
 
                 if "sprout" in game_key.player.backpack:
                     slow_print("The sprout starts shaking in your backpack...")
                     pause(2)
-                    game_key.change_screen("tree_hollow")
+                    break
 
                
             elif action == '3':
@@ -102,3 +105,4 @@ class IntroDungeon:
                     pause(1)
                     slow_print("Wait! I recognize that...")
 
+        return "tree_hollow"

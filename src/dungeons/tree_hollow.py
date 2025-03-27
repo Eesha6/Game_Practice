@@ -1,11 +1,12 @@
 from utils import *
 
+from game.player import Player
 backpack = []
 action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n"
 combining_list = []
 
 class TreeHollow:
-    def __init__(self):
+    def __init__(self, player):
         self.room_items = ("leaves", "berries", "ferns")
         self.combinator_dict = {
             frozenset(["(l)eaves", "(f)erns"]): "dry salad",
