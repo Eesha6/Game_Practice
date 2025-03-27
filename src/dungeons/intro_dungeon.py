@@ -53,7 +53,9 @@ class IntroDungeon:
                     slow_print("That item isn't here.")
 
                 if "sprout" in game_key.player.backpack:
-                    slow_print("You were able to leave the riverbank!")
+                    slow_print("The sprout starts shaking in your backpack...")
+                    pause(2)
+                    game_key.change_screen("tree_hollow")
 
                
             elif action == '3':
