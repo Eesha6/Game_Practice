@@ -6,14 +6,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../s
 
 # Import necessary modules
 from game.player import Player
-from dungeons.cell_hallway import CellHallway
+from dungeons.tree_hollow import TreeHollow
 
 class GameKeyMaker:
     def __init__(self, intro_dungeon, player):
         self.player = player()
         self.dungeon_dict = {
             "intro": intro_dungeon, # intro dungeon gets loaded
-            "cell block 3": CellHallway()
+            "screen 2": tree_hollow()
         }
 
     def turn(self):

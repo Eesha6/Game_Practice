@@ -51,6 +51,10 @@ class IntroDungeon:
                     game_key.player.add_to_backpack(name)
                 else:
                     slow_print("That item isn't here.")
+
+                if "sprout" in game_key.player.backpack:
+                    slow_print("You were able to leave the riverbank!")
+
                
             elif action == '3':
                 game_key.player.print_backpack()
