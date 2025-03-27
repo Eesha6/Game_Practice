@@ -12,15 +12,17 @@ from dungeons.tree_hollow import TreeHollow
 class GameKeyMaker:
     def __init__(self, intro_dungeon, player):
         self.player = player()
+        
         self.dungeon_dict = {
-            "intro": intro_dungeon(self.player), # intro dungeon gets loaded
-            "tree_hollow": TreeHollow(self.player)
+            "intro": intro_dungeon(), # intro dungeon gets loaded
+            "tree_hollow": TreeHollow()
         }
+        self.current_screen = self.dungeon_dict["intro"]
 
     def turn(self):
-        current_scene = 'intro'
-        while current_scene:
-            self.dungeon_dict[current_scene].enter(self)  # Pulls up dungeon screen
+        while self.current_screen:
+            self.dungeon_dict[self.current_screen].enter(self)  # Pulls up dungeon screen
+
 
     def change_screen(self, new_screen):
         self.current_screen = self.dungeon_dict[new_screen]

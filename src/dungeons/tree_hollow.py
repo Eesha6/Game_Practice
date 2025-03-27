@@ -6,7 +6,7 @@ action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4
 combining_list = []
 
 class TreeHollow:
-    def __init__(self, player):
+    def __init__(self):
         self.room_items = ("leaves", "berries", "ferns")
         self.combinator_dict = {
             frozenset(["(l)eaves", "(f)erns"]): "dry salad",

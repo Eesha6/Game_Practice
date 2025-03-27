@@ -10,8 +10,7 @@ combining_list = []
 
 
 class IntroDungeon:
-    def __init__(self, player):
-        self.player = Player
+    def __init__(self):
         self.room_items = ["(s)eeds", "(w)ater","(d)irt"]
         self.combinator_dict = {
             frozenset(["(d)irt", "(w)ater"]): "mud",
