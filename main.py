@@ -11,24 +11,15 @@ from src.game.player import Player
 
 
 
-
-def add_project_root():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-
-    while current_dir != os.path.dirname(current_dir):
-        if "main.py" in os.listdir(current_dir):
-            sys.path.append(current_dir)
-            break 
-        current_dir = os.path.dirname(current_dir)
-add_project_root()
-
 def main():
     '''
     intro_dungeon = IntroDungeon()
     player = Player()'
     '''
-    game_key = GameKeyMaker(IntroDungeon, Player)
-    game_key.turn()
+    game = GameKeyMaker(IntroDungeon, Player)
+    game.turn()
+
+    
     
 
 

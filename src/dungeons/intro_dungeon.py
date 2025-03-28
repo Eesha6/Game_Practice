@@ -1,8 +1,6 @@
 
 from utils import *
 
-from game.player import Player
-
 backpack = []
 action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n"
 combining_list = []
@@ -80,6 +78,8 @@ class IntroDungeon:
                             slow_print("The clouds start to darken... ")
                             slow_print("Suddenly you are whisked away to tree hollow!")
                             return "tree hollow"
+                            
+                        
                     else:  
                         slow_print("You're missing something.")
                 else:

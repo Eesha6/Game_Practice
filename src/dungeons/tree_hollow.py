@@ -20,7 +20,6 @@ class TreeHollow:
         slow_print("You spin around, fascinated by the beauty around you.")
         pause(2.5)
 
-    def enter(self, game_key):
         intro_1 = "You realize you light leaped!"
         intro_2 = "It takes a second for your eyes to adjust."
         clear()

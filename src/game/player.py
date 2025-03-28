@@ -31,3 +31,5 @@ class Player:
                 slow_print(item)
         else:
             slow_print("Your backpack is empty.")
+            
+    
