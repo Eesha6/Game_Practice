@@ -5,28 +5,38 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
 
 # Import necessary modules
-from game.player import Player
-from dungeons.intro_dungeon import IntroDungeon
-from dungeons.tree_hollow import TreeHollow
+from src.game.player import Player
+from src.dungeons.intro_dungeon import IntroDungeon
+from src.dungeons.tree_hollow import TreeHollow
 
 class GameKeyMaker:
     def __init__(self, intro_dungeon, player):
         self.player = player()
+        self.game_over = False
         
         self.dungeon_dict = {
             "intro": intro_dungeon(), # intro dungeon gets loaded
             "tree_hollow": TreeHollow()
         }
-        self.current_screen = self.dungeon_dict["intro"]
+        self.current_screen = "intro"
 
     def turn(self):
-        while self.current_screen:
-            self.dungeon_dict[self.current_screen].enter(self)  # Pulls up dungeon screen
+        while not self.game_over and self.current_screen:
+            current_dungeon = self.dungeon_dict[self.current_screen]  # Pulls up dungeon screen
+            next_screen = current_dungeon.enter(self)
 
+            if next_screen in self.dungeon_dict:
+                self.current_screen = next_screen
+            elif next_screen is None:
+                self.game_over = True
 
     def change_screen(self, new_screen):
-        self.current_screen = self.dungeon_dict[new_screen]
-        self.current_screen.enter(self)
+        if new_screen in self.dungeon_dict:
+             self.current_screen = new_screen
+        else:
+            print("That place doesn't exist.")
+       
+       
 
     def game_add_to_backpack(self, item):
         self.player.add_to_backpack(item)

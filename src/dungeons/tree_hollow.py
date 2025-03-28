@@ -2,16 +2,16 @@ from utils import *
 
 from game.player import Player
 backpack = []
-action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n"
+action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n5) plant\n"
 combining_list = []
 
 class TreeHollow:
     def __init__(self):
-        self.room_items = ("leaves", "berries", "ferns")
+        self.room_items = ("shovel", "berries")
         self.combinator_dict = {
-            frozenset(["(l)eaves", "(f)erns"]): "dry salad",
-            frozenset(["(l)eaves", "(b)erries"]): "potion",
-            frozenset(["(b)erries", "(f)erns"]): "bowl of rasberries"
+            frozenset(["(s)hovel", "(s)prout"]): "willow wish tree",
+            frozenset(["(s)hovel", "(b)erries"]): "berry bush",
+            frozenset(["(b)erries", "(s)prout"]): "smoothie",
         }
 
     def enter(self, game_key):
@@ -21,7 +21,7 @@ class TreeHollow:
         pause(2.5)
 
     def enter(self, game_key):
-        intro_1 = "After you successfully light leaped away you enter tree hollow!"
+        intro_1 = "You realize you light leaped!"
         intro_2 = "It takes a second for your eyes to adjust."
         clear()
         pause(2)
@@ -38,18 +38,18 @@ class TreeHollow:
             action = input(action_menu)
 
             if action == '1':
-                intro_3 = "You spot a small fox. You see some (f)erns growing freely..."
+                intro_3 = "You walk around and suddenly stumble. Discovering a (s)hovel"
                 slow_print(intro_3)
                 pause(2.5)
-                slow_print("You see a bush of (b)erries; also, there are (l)eaves everywhere...")
+                slow_print("You spot a bush of (b)erries.")
                 pause(3.5)
                 clear()
                 continue
         
             elif action == '2':
-                slow_print("What would you like to grab? (l/b/f)")
+                slow_print("What would you like to grab? (sh/b)")
                 item = input().lower()
-                name_map = {"l": "(l)eaves", "b": "(b)erries", "f": "(f)erns"}
+                name_map = {"s": "(sh)ovel", "b": "(b)erries"}
                 name = name_map.get(item)
                 if name and name in self.room_items:
                     self.room_items.remove(name)
@@ -57,22 +57,18 @@ class TreeHollow:
                 else:
                     slow_print("That item isn't here.")
 
-                if "bowl of raspberries" in game_key.player.backpack:
-                    slow_print("You were successfully able to teleport away!")
-                    slow_print("You win the game!")
-                    break
 
                
             elif action == '3':
                 game_key.player.print_backpack()
-                slow_print("Combine what first? (l/b/f or full name)")
-                name_map = {"l": "(l)eaves", "b": "(b)erries", "f": "(f)erns"}
+                slow_print("Combine what first? (sh/b/s or full name)")
+                name_map_dict = {"sh": "(sh)hovel", "b": "(b)erries", "s": "(s)prout"}
                 item1_key = input().lower()
-                slow_print("Combine with? (s/w/d or full name)")
+                slow_print("Combine with? (sh/b/s or full name)")
                 item2_key = input().lower()
 
-                i1 = name_map.get(item1_key, item1_key)
-                i2 = name_map.get(item2_key, item2_key)
+                i1 = name_map_dict(item1_key, item1_key)
+                i2 = name_map_dict(item2_key, item2_key)
 
 
                 key = frozenset([i1, i2])
@@ -93,17 +89,26 @@ class TreeHollow:
                 for item in game_key.player.backpack:
                     slow_print(item)
                 item = input().strip()
-                if item == "(l)eaves" and "(l)eaves" in game_key.player.backpack:
-                    slow_print("You roll around in the leaves")
+                if item == "(sh)ovel" and "(sh)ovel" in game_key.player.backpack:
+                    slow_print("You dig a hole for fun.")
                     pause(2.5)
                 elif item == "(b)erries" and "(b)erries" in game_key.player.backpack:
                     slow_print("You pluck a handful of berries and eat them. Enjoying the soury sweetness")
                     pause(2.5)
-                elif item == "(f)erns" and "(f)erns" in game_key.player.backpack:
-                    slow_print("You make a necklace out of the ferns")
+                elif item == "(s)prout" and "(s)prout" in game_key.player.backpack:
+                    slow_print("You feel the urge to eat the sprout but you just can't make yourself do it.")
                     pause(2.5)
-                elif item == "(s)hiny ring":
-                    slow_print("A guard comes to check on you...")
-                    pause(1)
-                    slow_print("Wait! I recognize that...")
+                else:
+                    print("You don't have that item.")
+            elif action == '5':
+                if "willow wish tree" in game_key.player.backpack:
+                    slow_print("You plant the willow wish tree!")
+                    slow_print("It grows rapidly into a fine willow!")
+                    game_key.game_over = True
+                    return None
+                else:
+                    slow_print("Your wish to escape cannot come true yet. Maybe you need to grow something first?")
+            else:
+                print("Choose a valid option!")
 
+                
