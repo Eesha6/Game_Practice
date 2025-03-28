@@ -49,8 +49,8 @@ class TreeHollow:
             elif action == '2':
                 slow_print("What would you like to grab? (sh/b)")
                 item = input().lower()
-                name_map = {"s": "(sh)ovel", "b": "(b)erries"}
-                name = name_map.get(item)
+                name_map_dict = {"s": "(sh)ovel", "b": "(b)erries"}
+                name = name_map_dict.get(item)
                 if name and name in self.room_items:
                     self.room_items.remove(name)
                     game_key.player.add_to_backpack(name)
@@ -67,8 +67,8 @@ class TreeHollow:
                 slow_print("Combine with? (sh/b/s or full name)")
                 item2_key = input().lower()
 
-                i1 = name_map_dict(item1_key, item1_key)
-                i2 = name_map_dict(item2_key, item2_key)
+                i1 = name_map_dict.get(item1_key, item1_key)
+                i2 = name_map_dict.get(item2_key, item2_key)
 
 
                 key = frozenset([i1, i2])

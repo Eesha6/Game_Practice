@@ -47,7 +47,7 @@ class IntroDungeon:
                 slow_print("What would you like to grab? (s/w/d)")
                 item = input().lower()
                 name_map_dict = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
-                name = name_map.dict[item]
+                name = name_map_dict.get(item)
                 if name in self.room_items:
                     self.room_items.remove(name)
                     game_key.game_add_to_backpack(name)
@@ -63,8 +63,8 @@ class IntroDungeon:
                 slow_print("Combine with? (s/w/d or full name)")
                 item2_key = input().lower()
 
-                i1 = name_map.dict(item1_key, item1_key)
-                i2 = name_map.dict(item2_key, item2_key)
+                i1 = name_map_dict.get(item1_key, item1_key)
+                i2 = name_map_dict.get(item2_key, item2_key)
 
 
                 key = frozenset([i1, i2])
