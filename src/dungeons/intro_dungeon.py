@@ -80,7 +80,7 @@ class IntroDungeon:
                         slow_print("You feel hungry so you decide to create a cake out of the dirt.")
                         pause(2.5)
                     elif item == "(s)eeds":
-                        slow_print("You toss the seeds into the river, they could have been useful...")
+                        slow_print("You toss some of the seeds into the river...")
                         pause(2.5)
                 else:
                     print("You don't have that item.")
