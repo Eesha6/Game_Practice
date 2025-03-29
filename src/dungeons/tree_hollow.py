@@ -3,10 +3,10 @@ from utils import *
 
 class TreeHollow:
     def __init__(self):
-        self.room_items = []
+        self.room_items = ["(s)hovel", "(b)erries"]
         self.shovel_found = False
         self.combinator_dict = {
-            frozenset(["shovel", "sprout"]): "planted tree"
+            frozenset(["shovel", "sprout"]): "tree"
         }
 
     def enter(self, game_key):
@@ -75,13 +75,30 @@ class TreeHollow:
                 game_key.player.print_backpack()
                 item = input().lower()
                 if item in game_key.player.backpack:
+                    if item == "(s)hovel":
+                        slow_print("You dig a hole and decide to dance around it.")
+                        pause(2.5)
+                    elif item == "(b)erries":
+                        slow_print("You pluck some berries from the bush.")
+                        pause(2.5)
+                    else:
+                        slow_print("You can't use that item.")
+
+
+
+
+
+
+
+
+
                     slow_print(f"You use the {item}. Nothing major happens.")
                 else:
                     slow_print("You don't have that.")
 
             elif choice == '6':
-                if "planted tree" in game_key.player.backpack:
-                    slow_print("The planted tree grows into a massive beanstalk. You climb to safety! You win!")
+                if "tree" in game_key.player.backpack:
+                    slow_print("You plant the tree and it grows into a massive beanstalk. You climb to safety! You win!")
                     game_key.game_over = True
                     return None
                 else:

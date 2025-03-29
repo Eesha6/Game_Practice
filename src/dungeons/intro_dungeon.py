@@ -62,6 +62,14 @@ class IntroDungeon:
                             slow_print("The clouds start to darken...")
                             slow_print("Suddenly you are whisked away to tree hollow!")
                             return "tree_hollow"
+                        elif result == "watery seeds":
+                            slow_print("You wasted your vital resources.")
+                            slow_print("You can no longer escape.")
+                        elif result == "mud":
+                            slow_print("You wasted your vital resources.")
+                            slow_print("You can no longer escape.")
+                            #game_key.game_over = True
+                            #return None
                     else:
                         slow_print("You're missing something.")
                 else:
