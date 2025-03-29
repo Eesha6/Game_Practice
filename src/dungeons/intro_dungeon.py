@@ -10,15 +10,9 @@ class IntroDungeon:
         }
 
     def enter(self, game_key):
-        intro_1 = "You awaken on a riverbank..."
-        intro_2 = "You have no idea how you got here."
-        clear()
+        slow_print("You awaken on a riverbank...")
         pause(2)
-
-        slow_print(intro_1)
-        pause(2)
-        clear()
-        slow_print(intro_2)
+        slow_print("You have no idea how you got here.")
         pause(2)
         clear()
 
@@ -31,19 +25,14 @@ class IntroDungeon:
             action = input("> ")
 
             if action == '1':
-                intro_3 = "Near a tree, you see some (s)eeds..."
-                slow_print(intro_3)
-                pause(2.5)
-                slow_print("You see a pail of (w)ater; also, there is (d)irt everywhere...")
-                pause(3.5)
-                clear()
+                slow_print("You see some (s)eeds, a pile of (d)irt, and a pail of (w)ater.")
 
             elif action == '2':
                 slow_print("What would you like to grab? (s/w/d)")
                 item = input().lower()
-                name_map_dict = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
-                name = name_map_dict.get(item)
-                if name in self.room_items:
+                name_map = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
+                name = name_map.get(item)
+                if name and name in self.room_items:
                     self.room_items.remove(name)
                     game_key.player.add_to_backpack(name)
                 else:
@@ -51,14 +40,14 @@ class IntroDungeon:
 
             elif action == '3':
                 game_key.player.print_backpack()
-                slow_print("Combine what first? (s/w/d or full name)")
-                name_map_dict = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
-                item1_key = input().lower()
-                slow_print("Combine with? (s/w/d or full name)")
-                item2_key = input().lower()
+                slow_print("Combine what first?")
+                i1 = input().lower()
+                slow_print("Combine with?")
+                i2 = input().lower()
 
-                i1 = name_map_dict.get(item1_key, item1_key)
-                i2 = name_map_dict.get(item2_key, item2_key)
+                name_map = {"s": "(s)eeds", "w": "(w)ater", "d": "(d)irt"}
+                i1 = name_map.get(i1, i1)
+                i2 = name_map.get(i2, i2)
 
                 key = frozenset([i1, i2])
                 if key in self.combinator_dict:
@@ -72,7 +61,7 @@ class IntroDungeon:
                         if result == "sprout":
                             slow_print("The clouds start to darken...")
                             slow_print("Suddenly you are whisked away to tree hollow!")
-                            return "tree hollow"
+                            return "tree_hollow"
                     else:
                         slow_print("You're missing something.")
                 else:
