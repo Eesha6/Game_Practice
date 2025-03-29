@@ -1,14 +1,8 @@
 from utils import *
 
-backpack = []
-action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n"
-combining_list = []
-
-
-
 class IntroDungeon:
     def __init__(self):
-        self.room_items = ["(s)eeds", "(w)ater","(d)irt"]
+        self.room_items = ["(s)eeds", "(w)ater", "(d)irt"]
         self.combinator_dict = {
             frozenset(["(d)irt", "(w)ater"]): "mud",
             frozenset(["(d)irt", "(s)eeds"]): "sprout",
@@ -29,7 +23,12 @@ class IntroDungeon:
         clear()
 
         while True:
-            action = input(action_menu)
+            print("*** MENU ***")
+            print("1) Search area")
+            print("2) Grab item")
+            print("3) Combine items")
+            print("4) Use item")
+            action = input("> ")
 
             if action == '1':
                 intro_3 = "Near a tree, you see some (s)eeds..."
@@ -38,8 +37,7 @@ class IntroDungeon:
                 slow_print("You see a pail of (w)ater; also, there is (d)irt everywhere...")
                 pause(3.5)
                 clear()
-                continue
-        
+
             elif action == '2':
                 slow_print("What would you like to grab? (s/w/d)")
                 item = input().lower()
@@ -47,11 +45,10 @@ class IntroDungeon:
                 name = name_map_dict.get(item)
                 if name in self.room_items:
                     self.room_items.remove(name)
-                    game_key.game_add_to_backpack(name)
+                    game_key.player.add_to_backpack(name)
                 else:
                     slow_print("That item isn't here.")
 
-               
             elif action == '3':
                 game_key.player.print_backpack()
                 slow_print("Combine what first? (s/w/d or full name)")
@@ -63,7 +60,6 @@ class IntroDungeon:
                 i1 = name_map_dict.get(item1_key, item1_key)
                 i2 = name_map_dict.get(item2_key, item2_key)
 
-
                 key = frozenset([i1, i2])
                 if key in self.combinator_dict:
                     result = self.combinator_dict[key]
@@ -74,12 +70,10 @@ class IntroDungeon:
                         slow_print("You created: " + result)
 
                         if result == "sprout":
-                            slow_print("The clouds start to darken... ")
+                            slow_print("The clouds start to darken...")
                             slow_print("Suddenly you are whisked away to tree hollow!")
                             return "tree hollow"
-                            
-                        
-                    else:  
+                    else:
                         slow_print("You're missing something.")
                 else:
                     slow_print("That didn't work.")

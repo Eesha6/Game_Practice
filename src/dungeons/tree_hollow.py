@@ -1,6 +1,6 @@
 from utils import *
 
-#from game.player import Player
+from game.player import Player
 backpack = []
 action_menu = "***  MENU  ***\n1) search area\n2) grab item\n3) combine items\n4) use item\n5) plant\n"
 combining_list = []
@@ -20,11 +20,17 @@ class TreeHollow:
         slow_print("You spin around, fascinated by the beauty around you.")
         pause(2.5)
 
-        slow_print("You realize you light leaped!")
-        slow_print("It takes a second for your eyes to adjust.")
+        intro_1 = "You realize you light leaped!"
+        intro_2 = "It takes a second for your eyes to adjust."
         clear()
         pause(2)
 
+        slow_print(intro_1)
+        pause(2)
+        clear()
+        slow_print(intro_2)
+        pause(2)
+        clear()
     
 
         while True:
@@ -103,5 +109,6 @@ class TreeHollow:
                     slow_print("Your wish to escape cannot come true yet. Maybe you need to grow something first?")
             else:
                 print("Choose a valid option!")
+
 
                 
