@@ -1,4 +1,3 @@
-
 from utils import *
 
 backpack = []
@@ -102,5 +101,3 @@ class IntroDungeon:
                         pause(2.5)
                 else:
                     print("You don't have that item.")
-
-       

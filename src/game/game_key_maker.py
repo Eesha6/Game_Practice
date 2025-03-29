@@ -2,12 +2,14 @@ import os
 import sys
 
 # Append the src directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+SRC_PATH = os.path.abspath(os.path.dirname(__file__))
+if SRC_PATH not in sys.path:
+    sys.path.append(SRC_PATH)
 
 # Import necessary modules
-from src.game.player import Player
-from src.dungeons.intro_dungeon import IntroDungeon
-from src.dungeons.tree_hollow import TreeHollow
+from player import Player
+from dungeons.intro_dungeon import IntroDungeon
+from dungeons.tree_hollow import TreeHollow
 
 class GameKeyMaker:
     def __init__(self, intro_dungeon, player):
