@@ -74,15 +74,14 @@ class TreeHollow:
                         slow_print("You created: " + result)
 
 
-                        if result == "sprout":
-                            slow_print("The clouds start to darken...")
-                            slow_print("Suddenly you are whisked away to tree hollow!")
-                            return "tree_hollow"
-                        elif result == "watery seeds":
-                            slow_print("You wasted your vital resources.")
-                            slow_print("You can no longer escape.")
-                        elif result == "mud":
-                            slow_print("You wasted your vital resources.")
+                        if result == "tree":
+                            slow_print("You have everything you need to escape now.")
+                            
+                        elif result == "berry bush":
+                            slow_print("You created a berry bush.")
+                            slow_print("That was very nice of you to do so for the animals. But you cannot escape anymore.")
+                        elif result == "fresh salad":
+                            slow_print("You used up your vital resources for your own personal needs.")
                             slow_print("You can no longer escape.")
                             #game_key.game_over = True
                             #return None
